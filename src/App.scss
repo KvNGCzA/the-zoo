@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap');
+$grey2: #4F4F4F;
+$grey3: #828282;
+
+@function rem-calc($size) {
+  $remSize: $size / 14;
+  @return #{$remSize}rem;
+}
+
+body{
+  background-color: #000;
+}
+
+* {
+  font-family: 'Montserrat';
+  letter-spacing: 0.03rem;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.logo {
+  position: fixed;
+  top: 3rem;
+  left: 5rem;
+  width: 17rem;
+  height: auto;
+  z-index: 5;
+}
+
+.schedule-cards-container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  position: relative;
+  transition: top 1s;
+
+  .schedule-card {
+    margin-right: rem-calc(1);
+
+    &:last-child {
+      margin: 0;
+    }
+  }
+}
+
+.schedule-card {
+  width: rem-calc(431);
+  height: rem-calc(176);
+  background-color: #FFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+
+  .title {
+    font-size: rem-calc(32);
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+
+  .opendays, .openhours {
+    font-size: rem-calc(18);
+    font-weight: 500;
+    color: $grey2;
+  }
+
+  .openhours {
+    color: $grey3;
+    font-size: rem-calc(16);
+    text-transform: uppercase;
+  }
+
+  .price-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 0 5rem;
+    position: absolute;
+    bottom: 1rem;
+
+    .price {
+      font-size: rem-calc(12);
+      color: $grey2;
+      text-transform: uppercase;
+    }
+  }
+}
+
+.slideOne {
+  height: 100vh;
+  background-color: #000;
+
+  .back {
+    height: 100%;
+    width: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: background-image 2s;
+  }
+}
+
+.map-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: auto;
+  width: rem-calc(1268);
+  margin-bottom: 15rem;
+
+  img {
+    height: rem-calc(443);
+    width: auto;
+  }
+
+  .map-writeup {
+    color: white;
+    width: rem-calc(690);
+    text-align: center;
+
+    .title {
+      font-size: rem-calc(32);
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-bottom: 0.7rem;
+    }
+
+    .body {
+      font-size: rem-calc(16);
+      line-height: rem-calc(34);
+    }
+  }
+}
