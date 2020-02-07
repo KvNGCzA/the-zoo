@@ -22,10 +22,10 @@ body{
 .logo {
   position: fixed;
   top: 3rem;
-  left: 5rem;
-  width: 17rem;
+  width: 20rem;
   height: auto;
   z-index: 5;
+  transition: left 1s;
 }
 
 .schedule-cards-container {
@@ -131,6 +131,110 @@ body{
     .body {
       font-size: rem-calc(16);
       line-height: rem-calc(34);
+    }
+  }
+}
+
+.popular-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: rem-calc(1295);
+  margin: auto;
+  margin-bottom: 2rem;
+
+  .title {
+    font-size: rem-calc(32);
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+
+  .attraction-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+}
+
+.attraction-card {
+  display: flex;
+  width: rem-calc(629);
+  height: rem-calc(390);
+  background-color: white;
+  flex-direction: column;
+  margin-bottom: 3rem;
+
+  .image-card {
+    height: rem-calc(316);
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .image-name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+
+    p {
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: rem-calc(16);
+    }
+  }
+}
+
+.family-card {
+  width: rem-calc(1295);
+  margin: auto;
+  margin-bottom: 2rem;
+
+  .write-up {
+    text-align: center;
+    background-color: white;
+    padding: 2rem;
+    
+    .title {
+      font-size: rem-calc(32);
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .body {
+      font-size: rem-calc(16);
+      line-height: rem-calc(34);
+    }
+  }
+
+  .family-image {
+    height: rem-calc(446);
+    background-image: url('./images//family.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+footer {
+  margin: auto;
+  width: rem-calc(1295);
+  display: flex;
+  color: white;
+  justify-content: space-between;
+  align-items: center;
+  font-size: rem-calc(16);
+  padding: 2rem 0;
+  text-transform: uppercase;
+
+  .socials {
+    display: flex;
+
+    img {
+      margin-right: 4rem;
+      height: rem-calc(28);
+      width: auto;
     }
   }
 }
