@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { ReactSVG } from 'react-svg';
 import logo from './images/logo.svg';
 import duck from './images/duck.jpg';
 import elephant from './images/elephant.jpg';
@@ -142,7 +143,7 @@ class App extends Component {
   renderMapContainer = () => {
     return (
       <div className="map-container">
-        <img className="southwest-map" src={map} alt="south west nigeria map"/>
+        <ReactSVG className="southwest-map" src={map} alt="south west nigeria map"/>
         <div className="map-writeup">
           <p className="title">
             we are located all over the south-west of nigeria

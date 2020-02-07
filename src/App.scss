@@ -111,9 +111,18 @@ body{
   width: rem-calc(1268);
   margin-bottom: 15rem;
 
-  img {
+  .southwest-map {
     height: rem-calc(443);
     width: auto;
+
+    .nigerian-state {
+      transition: opacity 1s;
+
+      &:hover {
+        opacity: 0.9;
+        cursor: pointer;
+      }
+    }
   }
 
   .map-writeup {
@@ -225,6 +234,7 @@ footer {
   justify-content: space-between;
   align-items: center;
   font-size: rem-calc(16);
+  font-weight: 500;
   padding: 2rem 0;
   text-transform: uppercase;
 
