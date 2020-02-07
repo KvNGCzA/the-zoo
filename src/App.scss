@@ -109,11 +109,12 @@ body{
   justify-content: space-between;
   margin: auto;
   width: rem-calc(1268);
-  margin-bottom: 15rem;
+  margin-bottom: 12rem;
 
   .southwest-map {
     height: rem-calc(443);
     width: auto;
+    transition: opacity 5s;
 
     .nigerian-state {
       transition: opacity 1s;
@@ -129,6 +130,8 @@ body{
     color: white;
     width: rem-calc(690);
     text-align: center;
+    position: relative;
+    transition: left 2s;
 
     .title {
       font-size: rem-calc(32);

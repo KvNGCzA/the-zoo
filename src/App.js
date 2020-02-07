@@ -78,18 +78,35 @@ class App extends Component {
       image: lions_den,
       text: 'the lions den'
     }],
-    logoLeft: '-33rem'
+    logoLeft: '-100%',
+    writeupLeft: '100%',
+    mapOpacity: 0
   }
 
   componentDidMount() {
     this.loopImages();
     this.setLoadingAnimation();
+    this.setMapContainerListener();
   }
 
   setLoadingAnimation = () => {
     setTimeout(() => {
       this.setState({ logoLeft: '5rem', scheduelPosition: -176 });
     }, 1000);
+  }
+
+  setMapContainerListener = () => {
+    setTimeout(() => {
+      const mapContainerPosition = document.getElementById('map-container').offsetTop;
+      window.addEventListener('scroll', () => this.setMapContainerContent(mapContainerPosition), false)
+    }, 2000);
+  }
+
+  setMapContainerContent = (position) => {
+    if (window.pageYOffset > (position - 1000) && this.state.writeupLeft !== 0 ) {
+      window.removeEventListener('scroll', () => this.setMapContainerContent, false);
+      return this.setState({ writeupLeft: 0, mapOpacity: 1 }, () => window.addEventListener('scroll',  () => this.setMapContainerContent(position), false));
+    }
   }
 
   loopImages = () => {
@@ -117,17 +134,6 @@ class App extends Component {
     );
   }
 
-  // scheduelPosition = () => {
-  //   if (window.pageYOffset > 10 && this.state.scheduelPosition === 0) {
-  //     window.removeEventListener('scroll', this.scheduelPosition, false);
-  //     return this.setState({ scheduelPosition: -176 }, () => window.addEventListener('scroll', this.scheduelPosition, false));
-  //   }
-  //   if (window.pageYOffset <= 10 && this.state.scheduelPosition === -176) {
-  //     window.removeEventListener('scroll', this.scheduelPosition, false);
-  //     return this.setState({ scheduelPosition: 0 }, () => window.addEventListener('scroll', this.scheduelPosition, false));
-  //   }
-  // }
-
   renderScheduleCards = () => {
     return (
       <div className="schedule-cards-container"
@@ -142,9 +148,9 @@ class App extends Component {
 
   renderMapContainer = () => {
     return (
-      <div className="map-container">
-        <ReactSVG className="southwest-map" src={map} alt="south west nigeria map"/>
-        <div className="map-writeup">
+      <div className="map-container" id="map-container">
+        <ReactSVG className="southwest-map" style={{ opacity: this.state.mapOpacity }} src={map} alt="south west nigeria map"/>
+        <div className="map-writeup" style={{ left: this.state.writeupLeft }}>
           <p className="title">
             we are located all over the south-west of nigeria
           </p>
