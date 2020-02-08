@@ -154,6 +154,7 @@ body{
   width: rem-calc(1295);
   margin: auto;
   margin-bottom: 2rem;
+  transition: opacity 3s;
 
   .title {
     font-size: rem-calc(32);
@@ -161,6 +162,7 @@ body{
     font-weight: bold;
     text-transform: uppercase;
     margin-bottom: 2rem;
+    position: relative;
   }
 
   .attraction-cards {

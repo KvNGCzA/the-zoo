@@ -80,7 +80,8 @@ class App extends Component {
     }],
     logoLeft: '-100%',
     writeupLeft: '100%',
-    mapOpacity: 0
+    mapOpacity: 0,
+    popularCardsOpacity: 0
   }
 
   componentDidMount() {
@@ -97,15 +98,37 @@ class App extends Component {
 
   setMapContainerListener = () => {
     setTimeout(() => {
-      const mapContainerPosition = document.getElementById('map-container').offsetTop;
-      window.addEventListener('scroll', () => this.setMapContainerContent(mapContainerPosition), false)
+      const mapContainerPosition = document.getElementById('map-container').offsetTop - 1000;
+      const popularContainerPosition = document.getElementById('popular-container').offsetTop - 600;
+      const familyContainerPosition = document.getElementById('family-card').offsetTop - 600;
+      window.addEventListener('scroll', () => this.setBodyAnimation(mapContainerPosition, popularContainerPosition, familyContainerPosition), false)
     }, 2000);
   }
 
-  setMapContainerContent = (position) => {
-    if (window.pageYOffset > (position - 1000) && this.state.writeupLeft !== 0 ) {
-      window.removeEventListener('scroll', () => this.setMapContainerContent, false);
-      return this.setState({ writeupLeft: 0, mapOpacity: 1 }, () => window.addEventListener('scroll',  () => this.setMapContainerContent(position), false));
+  setBodyAnimation = (mapPosition, popularPosition, familyPosition) => {
+    // set southwest container animation
+    if (
+      window.pageYOffset > mapPosition
+      && this.state.writeupLeft !== 0
+    ) {
+      window.removeEventListener('scroll', () => this.setBodyAnimation, false);
+      return this.setState(
+        { writeupLeft: 0, mapOpacity: 1 },
+        () => window.addEventListener(
+          'scroll',
+          () => this.setBodyAnimation(mapPosition, popularPosition), false));
+    }
+    // set popular attractions container animation
+    if (
+      window.pageYOffset > popularPosition
+      && this.state.popularCardsOpacity === 0
+    ) {
+      window.removeEventListener('scroll', () => this.setBodyAnimation, false);
+      return this.setState(
+        { popularCardsOpacity: 1 },
+        () => window.addEventListener(
+          'scroll',
+          () => this.setBodyAnimation(mapPosition, popularPosition), false));
     }
   }
 
@@ -164,9 +187,9 @@ class App extends Component {
 
   renderPopularAttractions = () => {
     return (
-      <div className="popular-container">
+      <div className="popular-container" id="popular-container" style={{ opacity: this.state.popularCardsOpacity }}>
         <p className="title">our popular attractions</p>
-        <div className="attraction-cards">
+        <div className="attraction-cards" >
           {this.state.attractions.map((props) => <AttractionCard key={props.text} {...props}/>)}
         </div>
       </div>
@@ -175,7 +198,7 @@ class App extends Component {
 
   renderFamily = () => {
     return (
-      <div className="family-card">
+      <div className="family-card" id="family-card">
         <div className="write-up">
           <p className="title">food, drinks and family</p>
           <p className="body">
