@@ -82,19 +82,19 @@ class App extends Component {
     writeupLeft: '100%',
     mapOpacity: 0,
     popularCardsOpacity: 0,
-    familyCardRight: '100%'
+    familyCardRight: '100%',
+    showModal: 'none'
   }
 
   componentDidMount() {
     this.loopImages();
-    this.setLoadingAnimation();
+    this.setLandingAnimation();
     this.setMapContainerListener();
   }
 
-  setLoadingAnimation = () => {
-    setTimeout(() => {
-      this.setState({ logoLeft: '5rem', scheduelPosition: -176 });
-    }, 1000);
+  setLandingAnimation = () => {
+    setTimeout(() => this.setState({ logoLeft: '5rem', scheduelPosition: -176 }), 1000);
+    setTimeout(this.toggleModal, 2500);
   }
 
   setMapContainerListener = () => {
@@ -240,9 +240,48 @@ class App extends Component {
     );
   }
 
+  toggleModal = () => {
+    if (this.state.showModal === 'none') {
+      return this.setState({ showModal: 'flex' });
+    }
+    this.setState({ showModal: 'none' })
+  }
+
+  renderModal = () => {
+    return (
+      <div className="modal modal--overlay" style={{ display: this.state.showModal }}>
+        <div className="modal--content">
+          <span className="close-icon" onClick={this.toggleModal}>close</span>
+          <div className="modal--left" />
+          <div className="modal--right">
+            <div className="content--header">
+              <p>subscribe</p>
+              <p>to get our special offers</p>
+            </div>
+            <div className="content--form">
+              <form>
+                <input type="email" placeholder="enter your email" required/>
+                <button type="submit">subscribe</button>
+              </form>
+            </div>
+            <div className="content--socials">
+              <p>follow us on social media</p>
+              <div>
+                <img src={instagram_icon} alt="instagram icon" />
+                <img src={twitter_icon} alt="twitter icon" />
+                <img src={facebook_icon} alt="facebook icon" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   render() {
     return (
       <div className="App">
+        {this.renderModal()}
         <img src={logo} alt="the zoo logo" className="logo" style={{ left: this.state.logoLeft }}/>
         {this.slideOne()}
         {this.renderScheduleCards()}
