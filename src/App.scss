@@ -204,6 +204,8 @@ body{
   width: rem-calc(1295);
   margin: auto;
   margin-bottom: 2rem;
+  position: relative;
+  transition: right 1s;
 
   .write-up {
     text-align: center;

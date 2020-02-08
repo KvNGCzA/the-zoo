@@ -81,7 +81,8 @@ class App extends Component {
     logoLeft: '-100%',
     writeupLeft: '100%',
     mapOpacity: 0,
-    popularCardsOpacity: 0
+    popularCardsOpacity: 0,
+    familyCardRight: '100%'
   }
 
   componentDidMount() {
@@ -111,24 +112,36 @@ class App extends Component {
       window.pageYOffset > mapPosition
       && this.state.writeupLeft !== 0
     ) {
-      window.removeEventListener('scroll', () => this.setBodyAnimation, false);
+      window.removeEventListener('scroll', this.setBodyAnimation, false);
       return this.setState(
         { writeupLeft: 0, mapOpacity: 1 },
         () => window.addEventListener(
           'scroll',
-          () => this.setBodyAnimation(mapPosition, popularPosition), false));
+          () => this.setBodyAnimation(mapPosition, popularPosition, familyPosition), false));
     }
     // set popular attractions container animation
     if (
       window.pageYOffset > popularPosition
       && this.state.popularCardsOpacity === 0
     ) {
-      window.removeEventListener('scroll', () => this.setBodyAnimation, false);
+      window.removeEventListener('scroll', this.setBodyAnimation, false);
       return this.setState(
         { popularCardsOpacity: 1 },
         () => window.addEventListener(
           'scroll',
-          () => this.setBodyAnimation(mapPosition, popularPosition), false));
+          () => this.setBodyAnimation(mapPosition, popularPosition, familyPosition), false));
+    }
+     // set family container animation
+     if (
+      window.pageYOffset > familyPosition
+      && this.state.familyCardRight !== 0
+    ) {
+      window.removeEventListener('scroll', this.setBodyAnimation, false);
+      return this.setState(
+        { familyCardRight: 0 },
+        () => window.addEventListener(
+          'scroll',
+          () => this.setBodyAnimation(mapPosition, popularPosition, familyPosition), false));
     }
   }
 
@@ -198,7 +211,10 @@ class App extends Component {
 
   renderFamily = () => {
     return (
-      <div className="family-card" id="family-card">
+      <div
+        className="family-card" id="family-card"
+        style={{ right: this.state.familyCardRight }}
+      >
         <div className="write-up">
           <p className="title">food, drinks and family</p>
           <p className="body">
