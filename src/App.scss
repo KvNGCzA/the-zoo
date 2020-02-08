@@ -111,6 +111,7 @@ body{
   margin: auto;
   width: rem-calc(1268);
   margin-bottom: 12rem;
+  overflow: hidden;
 
   .southwest-map {
     height: rem-calc(443);
@@ -492,12 +493,19 @@ footer {
       }
     }
   }
+
+  .modal {
+
+    &--content {
+      width: 100%;
+    }
+  }
 }
 
 @media screen and (max-width: 900px) {
 
   .logo {
-
+    width: 13rem;
   }
 
   .schedule-cards-container {
@@ -567,5 +575,43 @@ footer {
     flex-direction: column;
     height: 14rem;
     margin-bottom: 3rem;
+  }
+
+  .modal {
+    overflow: scroll;
+    align-items: initial;
+
+    &--right {
+      width: 100%;
+
+      .content {
+        
+        &--header {
+          p {
+
+            &:first-child {
+              font-size: rem-calc(40);
+            }
+
+            &:last-child {
+              font-size: rem-calc(14);
+            }
+          }
+        }
+
+        &--form {
+          width: 100%;
+
+          form {
+            width: 100%;
+            padding: 0 1rem;
+          }
+
+          input, button {
+            width: 100%;
+          }
+        }
+      }
+    }
   }
 }

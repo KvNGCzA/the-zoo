@@ -96,12 +96,12 @@ class App extends Component {
     setTimeout(() => this.setState({
       logoLeft: window.innerWidth < 900 ? '1rem' : '5rem', scheduelPosition: -176
     }), 1000);
-    // setTimeout(this.toggleModal, 2500);
+    setTimeout(this.toggleModal, 2500);
   }
 
   activateAnimations = () => {
     setTimeout(() => {
-      const subValue = window.innerWidth < 900 ? 700 : (window.innerWidth < 650 ? 900 : 600);
+      const subValue = window.innerWidth < 900 ? 700 : (window.innerWidth < 650 ? 800 : 600);
       const mapContainerPosition = document.getElementById('map-container').offsetTop - subValue;
       const popularContainerPosition = document.getElementById('popular-container').offsetTop - subValue;
       const familyContainerPosition = document.getElementById('family-card').offsetTop - subValue;
