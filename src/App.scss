@@ -53,6 +53,7 @@ body{
   justify-content: center;
   flex-direction: column;
   position: relative;
+  text-align: center;
 
   .title {
     font-size: rem-calc(32);
@@ -155,6 +156,7 @@ body{
   margin: auto;
   margin-bottom: 2rem;
   transition: opacity 3s;
+  text-align: center;
 
   .title {
     font-size: rem-calc(32);
@@ -252,6 +254,14 @@ footer {
       margin-right: 4rem;
       height: rem-calc(28);
       width: auto;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      &:last-child {
+        margin: 0;
+      }
     }
   }
 }
@@ -294,7 +304,7 @@ footer {
     background-image: url('./images/modal_horse.jpg');
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: top right;
+    background-position: center;
   }
 
   &--right {
@@ -386,9 +396,176 @@ footer {
             &:last-child {
               margin: 0;
             }
+
+            &:hover {
+              cursor: pointer;
+            }
           }
         }
       }
     }
+  }
+}
+
+
+@media screen and (max-width: 1302px) {
+
+  .schedule-cards-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .schedule-card {
+    width: 33.33333333%;
+  }
+
+  .map-container {
+    width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .popular-container {
+    width: 100%;
+
+    .attraction-cards {
+      // justify-content: center;
+      padding: 0 1rem;
+      width: 100%;
+    }
+
+    .attraction-card {
+      width: 49%;
+    }
+  }
+
+  .family-card {
+    width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  footer {
+    width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+@media screen and (max-width: 1150px) {
+
+  .schedule-card {
+
+    .title {
+      font-size: rem-calc(24);
+    }
+  
+    .price-container {
+      padding: 0 1rem;
+
+    }
+  }
+
+  .map-container {
+
+    .map-writeup {
+
+      .title {
+        font-size: rem-calc(24);
+      }
+    }
+  }
+
+  .popular-container {
+
+    .title {
+      font-size: rem-calc(24);
+    }
+  }
+
+  .family-card {
+
+    .write-up {
+
+      .title {
+        font-size: rem-calc(24);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+
+  .logo {
+
+  }
+
+  .schedule-cards-container {
+    flex-direction: column;
+  }
+
+  .schedule-card {
+    width: 100%;
+    margin: 0;
+    margin-bottom: rem-calc(1);
+
+    &:last-child {
+      margin: 0;
+    }
+  }
+
+  .map-container {
+    flex-direction: column;
+    margin-bottom: 0;
+    position: relative;
+    top: rem-calc(-130);
+  
+    .map-writeup {
+      width: 100%;
+      padding: 0 1rem;
+    }
+
+    .southwest-map {
+      margin-bottom: 4rem;
+      width: 100%;
+
+      > div {
+        width: 100%;
+
+        svg {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .popular-container {
+    position: relative;
+
+    .attraction-card {
+      width: 100%;
+    }
+  }
+
+  .family-card {
+    position: relative;
+
+    .family-image {
+      height: 20rem;
+    }
+
+    .write-up {
+
+      .body {
+        font-size: rem-calc(14);
+      }
+    }
+  }
+
+  footer {
+    position: relative;
+    flex-direction: column;
+    height: 14rem;
+    margin-bottom: 3rem;
   }
 }

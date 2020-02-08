@@ -89,19 +89,22 @@ class App extends Component {
   componentDidMount() {
     this.loopImages();
     this.setLandingAnimation();
-    this.setMapContainerListener();
+    this.activateAnimations();
   }
 
   setLandingAnimation = () => {
-    setTimeout(() => this.setState({ logoLeft: '5rem', scheduelPosition: -176 }), 1000);
-    setTimeout(this.toggleModal, 2500);
+    setTimeout(() => this.setState({
+      logoLeft: window.innerWidth < 900 ? '1rem' : '5rem', scheduelPosition: -176
+    }), 1000);
+    // setTimeout(this.toggleModal, 2500);
   }
 
-  setMapContainerListener = () => {
+  activateAnimations = () => {
     setTimeout(() => {
-      const mapContainerPosition = document.getElementById('map-container').offsetTop - 1000;
-      const popularContainerPosition = document.getElementById('popular-container').offsetTop - 600;
-      const familyContainerPosition = document.getElementById('family-card').offsetTop - 600;
+      const subValue = window.innerWidth < 900 ? 700 : (window.innerWidth < 650 ? 900 : 600);
+      const mapContainerPosition = document.getElementById('map-container').offsetTop - subValue;
+      const popularContainerPosition = document.getElementById('popular-container').offsetTop - subValue;
+      const familyContainerPosition = document.getElementById('family-card').offsetTop - subValue;
       window.addEventListener('scroll', () => this.setBodyAnimation(mapContainerPosition, popularContainerPosition, familyContainerPosition), false)
     }, 2000);
   }
